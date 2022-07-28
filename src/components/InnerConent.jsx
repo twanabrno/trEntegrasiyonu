@@ -11,23 +11,25 @@ import { Layout, Menu, Switch } from "antd";
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { useAuth } from "./temporary/auth";
+
 const { Header, Sider, Content } = Layout;
 
 const InnerConent = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
   const [collapsed, setCollapsed] = useState(false);
   const [theme, setTheme] = useState("dark");
   const changeTheme = (value) => {
     setTheme(value ? "light" : "dark");
   };
 
-  const { pathname } = useLocation();
-  console.log(useLocation());
+  const { pathname } = useLocation()
 
   return (
     <Layout>
       <Header className="text-white">
-        Header <Switch onChange={changeTheme} /> Change mode
+        Header <Switch onChange={changeTheme} className="ms-4" /> Change mode
       </Header>
       <Layout>
         <Sider
@@ -84,6 +86,10 @@ const InnerConent = () => {
                 icon: <UnlockFilled />,
                 label: "Logout",
                 className: "mt-auto mb-3",
+                onClick: () => {
+                  auth.logout();
+                  navigate("/login");
+                },
               },
             ]}
           />
@@ -97,7 +103,9 @@ const InnerConent = () => {
                 onClick: () => setCollapsed(!collapsed),
               }
             )}
-            <span className="mx-3 text-muted">{pathname==='/'? `${pathname}Dashboard`:pathname}</span>
+            <span className="mx-3 text-muted">
+              {pathname === "/" ? `${pathname}Dashboard` : pathname}
+            </span>
           </Header>
           <Content
             className="site-layout-background"

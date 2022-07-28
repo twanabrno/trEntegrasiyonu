@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikController from "./Forms/FormikController";
+import { useAuth } from "./temporary/auth";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const redirectPath = location.path?.state || "/";
   const initialValues = {
     email: "",
     password: "",
@@ -13,9 +19,15 @@ const Login = () => {
     password: Yup.string().required("Required"),
   });
   const onSubmit = (values, onSubmitProps) => {
-    console.log("submitted: ", values);
     onSubmitProps.setSubmitting(false);
+    navigate(redirectPath, { replace: true });
   };
+
+  useEffect(() => {
+    if(auth.user){
+      navigate('/',{replace:true})
+    }
+  });
   return (
     <div className="login-body d-flex align-items-center">
       <div className="login-form">
