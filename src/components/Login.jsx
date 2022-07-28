@@ -19,12 +19,14 @@ const Login = () => {
     password: Yup.string().required("Required"),
   });
   const onSubmit = (values, onSubmitProps) => {
+    auth.login(values.email);
     onSubmitProps.setSubmitting(false);
     navigate(redirectPath, { replace: true });
   };
 
   useEffect(() => {
     if(auth.user){
+      console.log('login');
       navigate('/',{replace:true})
     }
   });
