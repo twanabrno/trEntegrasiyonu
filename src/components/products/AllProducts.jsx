@@ -8,8 +8,10 @@ import { Space, Spin } from "antd";
 import { Modal, Button } from "react-bootstrap";
 import UpdateForm from "./UpdateForm";
 import AddForm from "./AddForm";
+import { useNavigate } from "react-router-dom";
 
 function AllProducts() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -125,7 +127,6 @@ function AllProducts() {
       setLoading(true);
       await HTTP.get(`posts?_limit=${limit}&_page=${currentPage}`).then(
         (response) => {
-          console.log(response.data);
           setItems(response.data);
           // setPageCount(Math.ceil(response.data.length / limit));
           setLoading(false);
@@ -176,57 +177,7 @@ function AllProducts() {
 
   return (
     <>
-      <div className="mb-3 d-flex justify-content-end px-md-5">
-        <Button variant="success" onClick={() => setAddModalShow(true)}>
-          Add Post
-        </Button>{" "}
-      </div>
-        {!loading ? (
-          <>
-            <Table
-              striped
-              bordered
-              hover
-              size="sm"
-              responsive
-              {...getTableProps()}
-            >
-              <thead>
-                {headerGroups.map((headerGroup) => (
-                  <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => (
-                      <th {...column.getHeaderProps()} className='tb-header'>
-                        {column.render("Header")}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()}>
-                {rows.map((row) => {
-                  prepareRow(row);
-                  return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell) => {
-                        return (
-                          <td {...cell.getCellProps()}>
-                            {cell.render("Cell")}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </>
-        ) : (
-          <div className="tb d-flex justify-content-center align-items-center">
-            <Space size="large">
-            <Spin size="large" />
-          </Space>
-          </div>
-        )}
+      <div className="mb-3 d-flex justify-content-between px-md-5">
       <ReactPaginate
         previousLabel={"Prev"}
         nextLabel={"Next"}
@@ -246,6 +197,66 @@ function AllProducts() {
         breakLinkClassName={"page-link"}
         activeClassName={"active"}
       />
+        <Button variant="success" onClick={() => setAddModalShow(true)}>
+          Add Post
+        </Button>{" "}
+      </div>
+      {!loading ? (
+        <>
+          <Table
+            striped
+            bordered
+            hover
+            size="sm"
+            responsive
+            {...getTableProps()}
+          >
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()} className="tb-header">
+                      {column.render("Header")}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} style={{ cursor: "pointer" }}>
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          onClick={() => {
+                            if (cell.column.id != "action") {
+                              navigate(`product/${cell.row.original.id}`, {
+                                state: { ...cell.row.original },
+                              });
+                            }
+                          }}
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </>
+      ) : (
+        <div className="tb d-flex justify-content-center align-items-center">
+          <Space size="large">
+            <Spin size="large" />
+          </Space>
+        </div>
+      )}
+      
       <UpdateModal show={updateModalShow} onHide={handleUpdateClose} />
       <AddModal show={addModalShow} onHide={handleAddClose} />
     </>

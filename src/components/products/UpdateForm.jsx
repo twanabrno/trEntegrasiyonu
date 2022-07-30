@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, Button, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { HTTP } from "../../HTTP";
 import { Formik, Form } from "formik";

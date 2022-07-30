@@ -8,10 +8,12 @@ import {
   UnlockFilled,
 } from "@ant-design/icons";
 import { Layout, Menu, Switch } from "antd";
+import { Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "./temporary/auth";
+import { RiLogoutBoxFill } from "react-icons/ri";
 
 const { Header, Sider, Content } = Layout;
 
@@ -21,31 +23,52 @@ const InnerConent = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [theme, setTheme] = useState("dark");
   const changeTheme = (value) => {
-    setTheme(value ? "light" : "dark");
+    setTheme(value ? "dark" : "light");
   };
 
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   return (
     <Layout>
-      <Header className="text-white">
-        Header <Switch onChange={changeTheme} className="ms-4" /> Change mode
+      <Header className="text-white position-fixed w-100 d-flex justify-content-between hd">
+        <div>Header</div>
+        <div>
+          <Switch
+            size="small"
+            onChange={changeTheme}
+            className="ms-4"
+            defaultChecked
+          />{" "}
+          <small>Dark</small>
+          <span
+            className="mx-3 logout-btn"
+            onClick={() => {
+              auth.logout();
+              navigate("/login");
+            }}
+          >
+            <RiLogoutBoxFill /> Logout
+          </span>
+        </div>
       </Header>
       <Layout>
         <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
-          style={{ overflow: "auto", height: "90vh" }}
+          style={{
+            overflow: "auto",
+            position: "fixed",
+            left: 0,
+            top: "64px",
+            bottom: 0,
+          }}
         >
-          <div className="logo" />
           <Menu
             theme={theme}
             mode="inline"
             style={{
               height: "100%",
-              display: "flex",
-              flexDirection: "column",
             }}
             defaultSelectedKeys={["1"]}
             items={[
@@ -81,21 +104,19 @@ const InnerConent = () => {
                   navigate("category");
                 },
               },
-              {
-                key: "7",
-                icon: <UnlockFilled />,
-                label: "Logout",
-                className: "mt-auto mb-3",
-                onClick: () => {
-                  auth.logout();
-                  navigate("/login");
-                },
-              },
+              
             ]}
           />
         </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Layout
+          className="site-layout"
+          style={{
+            marginTop: "64px",
+            marginLeft: collapsed ? 80 : 200,
+            transitionDuration: "all 0.2s",
+          }}
+        >
+          <Header className="site-layout-background hd position-fixed w-100 px-0">
             {React.createElement(
               collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
@@ -111,8 +132,9 @@ const InnerConent = () => {
             className="site-layout-background"
             style={{
               margin: "24px 16px",
+              marginTop: "80px",
               padding: 24,
-              minHeight: 280,
+              minHeight:450,
             }}
           >
             <Outlet />
