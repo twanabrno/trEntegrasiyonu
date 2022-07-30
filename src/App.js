@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./components/temporary/auth";
 import Dashboard from "./components/Dashboard";
-import Products from "./components/Products";
-import AllProducts from "./components/AllProducts";
-import Product from "./components/Product";
+import Products from "./components/products/Products";
+import AllProducts from "./components/products/AllProducts";
+import Product from "./components/products/Product";
 import Category from "./components/Category";
-import Brands from "./components/Brands";
+import Brands from "./components/brands/Brands";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Nomatch from "./components/Nomatch";
