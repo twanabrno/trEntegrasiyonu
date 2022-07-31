@@ -21,8 +21,8 @@ const UpdateForm = ({
     kategoryAciklama: Yup.string().required("Required"),
     kategoryMetaAciklama: Yup.string().required("Required"),
     ustKategory: Yup.string().required("Required"),
-    kategoryFoto: Yup.string().required("Required"),
-    kategorySeoUrl: Yup.string().required("Required"),
+    kategoryFoto: Yup.mixed().required("Required"),
+    kategorySeoUrl: Yup.string().url().required("Required"),
   });
   const handleSaveUpdate = (values) => {
     Swal.fire({

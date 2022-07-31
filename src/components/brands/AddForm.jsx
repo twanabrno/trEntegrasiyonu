@@ -23,12 +23,12 @@ const UpdateForm = ({
     markaSeoUrl: "",
   };
   const validationSchema = Yup.object({
-    markaId: Yup.string().required("Required"),
+    markaId: Yup.number().positive().required("Required"),
     markaAdi: Yup.string().required("Required"),
     markaAciklama: Yup.string().required("Required"),
     markaMetaAciklama: Yup.string().required("Required"),
-    markaFoto: Yup.string().required("Required"),
-    markaSeoUrl: Yup.string().required("Required"),
+    markaFoto: Yup.mixed().required("Required"),
+    markaSeoUrl: Yup.string().url().required("Required"),
   });
 
   const handleAddData = (values, onSubmitProps) => {
@@ -70,7 +70,7 @@ const UpdateForm = ({
         {(formik) => (
           <Form>
             <Modal.Body>
-            <Row>
+              <Row>
                 <Col md="4">
                   <FormikController
                     control="input"

@@ -32,21 +32,21 @@ const UpdateForm = ({
     urunFoto: "",
   };
   const validationSchema = Yup.object({
-    urunId: Yup.string().required("Required"),
+    urunId: Yup.number().positive().required("Required"),
     urunIsim: Yup.string().required("Required"),
     urunAciklama: Yup.string().required("Required"),
     urunMetaAciklama: Yup.string().required("Required"),
-    urunKod: Yup.string().required("Required"),
-    urunModelKod: Yup.string().required("Required"),
-    urunBarkod: Yup.string().required("Required"),
-    urunStok: Yup.string().required("Required"),
-    urunStokStatue: Yup.string().required("Required"),
-    urunFiyat: Yup.string().required("Required"),
-    urunFiyatKdv: Yup.string().required("Required"),
+    urunKod: Yup.number().positive().required("Required"),
+    urunModelKod: Yup.number().positive().required("Required"),
+    urunBarkod: Yup.number().positive().required("Required"),
+    urunStok: Yup.number().positive().required("Required"),
+    urunStokStatue: Yup.number().positive().required("Required"),
+    urunFiyat: Yup.number().positive().required("Required"),
+    urunFiyatKdv: Yup.number().positive().required("Required"),
     urunKategory: Yup.string().required("Required"),
     urunOzellikler: Yup.string().required("Required"),
     urunFiltre: Yup.string().required("Required"),
-    urunFoto: Yup.string().required("Required"),
+    urunFoto: Yup.mixed().required("Required"),
   });
 
   const handleAddData = (values, onSubmitProps) => {

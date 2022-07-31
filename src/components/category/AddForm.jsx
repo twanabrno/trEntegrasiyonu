@@ -24,13 +24,13 @@ const UpdateForm = ({
     kategorySeoUrl: "",
   };
   const validationSchema = Yup.object({
-    kategoryId: Yup.string().required("Required"),
+    kategoryId: Yup.number().positive().required("Required"),
     kategoryAdi: Yup.string().required("Required"),
     kategoryAciklama: Yup.string().required("Required"),
     kategoryMetaAciklama: Yup.string().required("Required"),
     ustKategory: Yup.string().required("Required"),
-    kategoryFoto: Yup.string().required("Required"),
-    kategorySeoUrl: Yup.string().required("Required"),
+    kategoryFoto: Yup.mixed().required("Required"),
+    kategorySeoUrl: Yup.string().url().required("Required"),
   });
 
   const handleAddData = (values, onSubmitProps) => {
