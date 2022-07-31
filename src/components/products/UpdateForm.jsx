@@ -14,36 +14,21 @@ const UpdateForm = ({
   handleUpdateClose,
   ...props
 }) => {
+  const kategory = [
+    { key: "option 1", value: "option1" },
+    { key: "option 2", value: "option2" },
+    { key: "option 3", value: "option3" },
+    { key: "option 4", value: "option4" },
+  ];
   const initialValues = { ...updateData };
   const validationSchema = Yup.object({
     urunId: Yup.number().positive().required("Required"),
     urunIsim: Yup.string().required("Required"),
     urunAciklama: Yup.string().required("Required"),
     urunMetaAciklama: Yup.string().required("Required"),
-    urunKod: Yup.number()
-      .positive()
-      .test(
-        "len",
-        "Must be exactly 5 characters",
-        (val) => val.length === 5
-      )
-      .required("Required"),
-    urunModelKod: Yup.number()
-      .positive()
-      .test(
-        "len",
-        "Must be exactly 5 characters",
-        (val) => val.length === 5
-      )
-      .required("Required"),
-    urunBarkod: Yup.number()
-      .positive()
-      .test(
-        "len",
-        "Must be exactly 5 characters",
-        (val) => val.length === 5
-      )
-      .required("Required"),
+    urunKod: Yup.number().positive().required("Required"),
+    urunModelKod: Yup.number().positive().required("Required"),
+    urunBarkod: Yup.number().positive().required("Required"),
     urunStok: Yup.number().positive().required("Required"),
     urunStokStatue: Yup.number().positive().required("Required"),
     urunFiyat: Yup.number().positive().required("Required"),
@@ -51,7 +36,7 @@ const UpdateForm = ({
     urunKategory: Yup.string().required("Required"),
     urunOzellikler: Yup.string().required("Required"),
     urunFiltre: Yup.string().required("Required"),
-    urunFoto: Yup.mixed().required("Required"),
+    urunFoto: Yup.mixed().required("You need to provide a file"),
   });
   const handleSaveUpdate = (values) => {
     Swal.fire({
@@ -96,7 +81,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunId"
                     label="Urun Id"
                   />
@@ -111,16 +96,14 @@ const UpdateForm = ({
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="urunAciklama"
                     label="Urun Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="urunMetaAciklama"
                     label="Urun Meta Aciklama"
                   />
@@ -128,7 +111,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunKod"
                     label="Urun Kod"
                   />
@@ -136,7 +119,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunModelKod"
                     label="Urun Model Kod"
                   />
@@ -144,7 +127,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunBarkod"
                     label="Urun Barkod"
                   />
@@ -152,7 +135,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunStok"
                     label="Urun Stok"
                   />
@@ -160,7 +143,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunStokStatue"
                     label="Urun Stok Statue"
                   />
@@ -168,7 +151,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunFiyat"
                     label="Urun Fiyat"
                   />
@@ -176,15 +159,15 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="urunFiyatKdv"
                     label="Urun Fiyat Kdv"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="select"
+                    options={kategory}
                     name="urunKategory"
                     label="Urun Kategory"
                   />
@@ -208,7 +191,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="file"
                     name="urunFoto"
                     label="Urun Foto"
                   />

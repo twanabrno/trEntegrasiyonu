@@ -14,6 +14,12 @@ const UpdateForm = ({
   getData,
   ...props
 }) => {
+  const ustkategorys = [
+    { key: "option 1", value: "option1" },
+    { key: "option 2", value: "option2" },
+    { key: "option 3", value: "option3" },
+    { key: "option 4", value: "option4" },
+  ];
   const initialValues = {
     urunkategoryIdId: "",
     kategoryAdi: "",
@@ -29,8 +35,8 @@ const UpdateForm = ({
     kategoryAciklama: Yup.string().required("Required"),
     kategoryMetaAciklama: Yup.string().required("Required"),
     ustKategory: Yup.string().required("Required"),
-    kategoryFoto: Yup.mixed().required("Required"),
     kategorySeoUrl: Yup.string().url().required("Required"),
+    kategoryFoto: Yup.mixed().required("You need to provide a file"),
   });
 
   const handleAddData = (values, onSubmitProps) => {
@@ -76,7 +82,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="kategoryId"
                     label="Kategory Id"
                   />
@@ -91,24 +97,22 @@ const UpdateForm = ({
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="kategoryAciklama"
                     label="Urun Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="kategoryMetaAciklama"
                     label="Meta Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="select"
+                    options={ustkategorys}
                     name="ustKategory"
                     label="Ust Kategory"
                   />
@@ -116,7 +120,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="file"
                     name="kategoryFoto"
                     label="Kategory Foto"
                   />

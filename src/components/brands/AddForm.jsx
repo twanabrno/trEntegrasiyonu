@@ -74,7 +74,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="markaId"
                     label="Marka Id"
                   />
@@ -89,16 +89,14 @@ const UpdateForm = ({
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="markaAciklama"
                     label="Marka Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="markaMetaAciklama"
                     label="Marka Meta Aciklama"
                   />
@@ -106,7 +104,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="file"
                     name="markaFoto"
                     label="Marka Foto"
                   />

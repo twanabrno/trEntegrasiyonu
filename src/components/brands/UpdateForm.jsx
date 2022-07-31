@@ -16,12 +16,12 @@ const UpdateForm = ({
 }) => {
   const initialValues = { ...updateData };
   const validationSchema = Yup.object({
-    markaId: Yup.string().required("Required"),
+    markaId: Yup.number().positive().required("Required"),
     markaAdi: Yup.string().required("Required"),
     markaAciklama: Yup.string().required("Required"),
     markaMetaAciklama: Yup.string().required("Required"),
-    markaFoto: Yup.string().required("Required"),
-    markaSeoUrl: Yup.string().required("Required"),
+    markaFoto: Yup.mixed().required("Required"),
+    markaSeoUrl: Yup.string().url().required("Required"),
   });
   const handleSaveUpdate = (values) => {
     Swal.fire({
@@ -62,11 +62,11 @@ const UpdateForm = ({
         {(formik) => (
           <Form>
             <Modal.Body>
-            <Row>
+              <Row>
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="number"
                     name="markaId"
                     label="Marka Id"
                   />
@@ -81,16 +81,14 @@ const UpdateForm = ({
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="markaAciklama"
                     label="Marka Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
-                    control="input"
-                    type="text"
+                    control="textarea"
                     name="markaMetaAciklama"
                     label="Marka Meta Aciklama"
                   />
@@ -98,7 +96,7 @@ const UpdateForm = ({
                 <Col md="4">
                   <FormikController
                     control="input"
-                    type="text"
+                    type="file"
                     name="markaFoto"
                     label="Marka Foto"
                   />
