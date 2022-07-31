@@ -24,21 +24,61 @@ function AllProducts() {
   const columns = useMemo(
     () => [
       {
-        Header: "Id",
+        Header: "Urun Id",
         accessor: "id",
       },
       {
-        Header: "User Id",
+        Header: "Urun Isim",
         accessor: "userId",
       },
       {
-        Header: "Title",
+        Header: "Urun Aciklama",
         accessor: "title",
       },
-      {
-        Header: "Body",
-        accessor: "body",
-      },
+      // {
+      //   Header: "Urun Kod",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Model Kod",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Barkod",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Stok",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Stok Statue",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Fiyat",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Fiyat KDV",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Kategory",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Filtre",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Ozellikler",
+      //   accessor: "body",
+      // },
+      // {
+      //   Header: "Urun Foto",
+      //   accessor: "body",
+      // },
       {
         Header: "Actions",
         id: "action",
@@ -139,7 +179,7 @@ function AllProducts() {
 
   const UpdateModal = (props) => {
     return (
-      <Modal {...props} size="lg" aria-labelledby="update-modal-title" centered>
+      <Modal {...props} size="xl" aria-labelledby="update-modal-title" centered>
         <Modal.Header closeButton>
           <Modal.Title id="update-modal-title">Modal heading</Modal.Title>
         </Modal.Header>
@@ -156,7 +196,7 @@ function AllProducts() {
   };
   const AddModal = (props) => {
     return (
-      <Modal {...props} size="lg" aria-labelledby="add-modal-title" centered>
+      <Modal {...props} size="xl" aria-labelledby="add-modal-title" centered>
         <Modal.Header closeButton>
           <Modal.Title id="add-modal-title">Add new Post</Modal.Title>
         </Modal.Header>

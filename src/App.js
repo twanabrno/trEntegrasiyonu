@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard";
 import Products from "./components/products/Products";
 import AllProducts from "./components/products/AllProducts";
 import Product from "./components/products/Product";
-import Category from "./components/Category";
+import Category from "./components/category/Category";
 import Brands from "./components/brands/Brands";
 import Login from "./components/Login";
 import Register from "./components/Register";

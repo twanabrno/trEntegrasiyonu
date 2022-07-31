@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { HTTP } from "../../HTTP";
 import { Formik, Form } from "formik";
@@ -16,7 +16,12 @@ const UpdateForm = ({
 }) => {
   const initialValues = { ...updateData };
   const validationSchema = Yup.object({
-    body: Yup.string().required("Required"),
+    markaId: Yup.string().required("Required"),
+    markaAdi: Yup.string().required("Required"),
+    markaAciklama: Yup.string().required("Required"),
+    markaMetaAciklama: Yup.string().required("Required"),
+    markaFoto: Yup.string().required("Required"),
+    markaSeoUrl: Yup.string().required("Required"),
   });
   const handleSaveUpdate = (values) => {
     Swal.fire({
@@ -27,7 +32,7 @@ const UpdateForm = ({
       denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
-        HTTP.put(`/comments/${values.id}`, values)
+        HTTP.put(`/posts/${values.id}`, values)
           .then((response) => {
             console.log(response.data);
             Swal.fire("Saved!", "", "success");
@@ -57,12 +62,56 @@ const UpdateForm = ({
         {(formik) => (
           <Form>
             <Modal.Body>
-              <FormikController
-                control="input"
-                type="text"
-                name="body"
-                label="Body"
-              />
+            <Row>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaId"
+                    label="Marka Id"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaAdi"
+                    label="Marka Adi"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaAciklama"
+                    label="Marka Aciklama"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaMetaAciklama"
+                    label="Marka Meta Aciklama"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaFoto"
+                    label="Marka Foto"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="markaSeoUrl"
+                    label="Marka Seo Url"
+                  />
+                </Col>
+              </Row>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={props.onHide}>

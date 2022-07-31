@@ -15,25 +15,27 @@ const UpdateForm = ({
   ...props
 }) => {
   const initialValues = {
-    markaId: "",
-    markaAdi: "",
-    markaAciklama: "",
-    markaMetaAciklama: "",
-    markaFoto: "",
-    markaSeoUrl: "",
+    urunkategoryIdId: "",
+    kategoryAdi: "",
+    kategoryAciklama: "",
+    kategoryMetaAciklama: "",
+    ustKategory: "",
+    kategoryFoto: "",
+    kategorySeoUrl: "",
   };
   const validationSchema = Yup.object({
-    markaId: Yup.string().required("Required"),
-    markaAdi: Yup.string().required("Required"),
-    markaAciklama: Yup.string().required("Required"),
-    markaMetaAciklama: Yup.string().required("Required"),
-    markaFoto: Yup.string().required("Required"),
-    markaSeoUrl: Yup.string().required("Required"),
+    kategoryId: Yup.string().required("Required"),
+    kategoryAdi: Yup.string().required("Required"),
+    kategoryAciklama: Yup.string().required("Required"),
+    kategoryMetaAciklama: Yup.string().required("Required"),
+    ustKategory: Yup.string().required("Required"),
+    kategoryFoto: Yup.string().required("Required"),
+    kategorySeoUrl: Yup.string().required("Required"),
   });
 
   const handleAddData = (values, onSubmitProps) => {
     Swal.fire({
-      title: "Do you want to Add this Brand?",
+      title: "Do you want to Add this product?",
       showCancelButton: true,
       confirmButtonText: "Add",
     }).then((result) => {
@@ -70,53 +72,61 @@ const UpdateForm = ({
         {(formik) => (
           <Form>
             <Modal.Body>
-            <Row>
+              <Row>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaId"
-                    label="Marka Id"
+                    name="kategoryId"
+                    label="Kategory Id"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaAdi"
-                    label="Marka Adi"
+                    name="kategoryAdi"
+                    label="Kategory Adi"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaAciklama"
-                    label="Marka Aciklama"
+                    name="kategoryAciklama"
+                    label="Urun Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaMetaAciklama"
-                    label="Marka Meta Aciklama"
+                    name="kategoryMetaAciklama"
+                    label="Meta Aciklama"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaFoto"
-                    label="Marka Foto"
+                    name="ustKategory"
+                    label="Ust Kategory"
                   />
                 </Col>
                 <Col md="4">
                   <FormikController
                     control="input"
                     type="text"
-                    name="markaSeoUrl"
-                    label="Marka Seo Url"
+                    name="kategoryFoto"
+                    label="Kategory Foto"
+                  />
+                </Col>
+                <Col md="4">
+                  <FormikController
+                    control="input"
+                    type="text"
+                    name="kategorySeoUrl"
+                    label="Kategory Seo Url"
                   />
                 </Col>
               </Row>

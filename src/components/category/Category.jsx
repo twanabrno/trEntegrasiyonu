@@ -24,28 +24,32 @@ const Brands=()=> {
   const columns = useMemo(
     () => [
       {
-        Header: "Marka Id",
+        Header: "Id",
         accessor: "id",
       },
       {
-        Header: "Marka Adi",
-        accessor: "markaAdi",
+        Header: "Adi",
+        accessor: "kategoryAdi",
       },
       {
-        Header: "Marka Aciklama",
-        accessor: "markaAciklama",
+        Header: "Aciklama",
+        accessor: "kategoryAciklama",
       },
       {
-        Header: "Meta Kod",
-        accessor: "markaMetaKod",
+        Header: "Meta Aciklama",
+        accessor: "kategoryMetaAciklama",
+      },
+      {
+        Header: "Ust Kategori",
+        accessor: "ustKategory",
       },
       {
         Header: "Foto",
-        accessor: "markaFoto",
+        accessor: "kategoryFoto",
       },
       {
-        Header: "Seo URL",
-        accessor: "markaSeoUrl",
+        Header: "Seo Url",
+        accessor: "kategorySeoUrl",
       },
       {
         Header: "Actions",
